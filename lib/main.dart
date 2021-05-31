@@ -18,6 +18,12 @@ class Pizza {
     strSize = PIZZA_SIZES[_size];
     description = "$strSize $_topping pizza";
   }
+  getDescription() {
+    return description;
+  }
+  getPrice() {
+    return '$_price';
+  }
 }
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -43,7 +49,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  List<Pizza> pizzaList;
+  List<Pizza> pizzaList = new List();
 
   void _addPizza() {
     final pizzaToppingTextField = TextEditingController();
@@ -107,7 +113,8 @@ class _MyHomePageState extends State<MyHomePage> {
         itemCount: pizzaList.length,
         itemBuilder: (BuildContext context, int position) {
           return ListTile(
-            title: Text(pizzaList[position].toString()),
+            title: Text(pizzaList[position].getDescription()),
+            subtitle: Text(pizzaList[position].getPrice()),
           );
         },
       ),
